@@ -1,13 +1,15 @@
 //Password = UM0Syrg5u5iRPglM
 const express = require("express");
-
 require('dotenv').config({path: './env/.env'});
 const mongoose = require("mongoose");
 const config = require('config');
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
 const cookieParser = require("cookie-parser");
+const complainRoutes = require("./Route/complaintsRoute.js");
+
+
+
 
 const app = express();
 //Middleware
@@ -15,6 +17,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use(require("./Route/TransportRoutes.js"));
+app.use("/complaints", complainRoutes);
+
+
 
 //Database connection
 mongoose.connect(config.get('db.uri'))
