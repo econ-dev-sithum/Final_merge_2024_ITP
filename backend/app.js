@@ -7,6 +7,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const complainRoutes = require("./Route/complaintsRoute.js");
+const Feedback = require("./Route/feedBackDetailRoute.js")
 
 
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use(require("./Route/TransportRoutes.js"));
 app.use("/complaints", complainRoutes);
+app.use('/feedBackDetail', Feedback);
 
 
 
