@@ -102,7 +102,7 @@ function App() {
           {/* ############################################## foood ######################## */}
         </Routes>
       </div>
-      {/* inventory header */}
+      {/* inventory hetgtader */}
       <Header />
       {/* inventory header */}
       <UserProvider>
@@ -151,7 +151,7 @@ function App() {
           {/* <Route /> */}
 
           {/* <Route element={<OnlyAdminPrivateRoute />}> */}
-            <Route path="/addproduct" element={<AddProducts />} />
+          <Route path="/addproduct" element={<AddProducts />} />
           {/* </Route> */}
           <Route path="/transportHome" element={<TransportHome />} />
           <Route path="/addtranport" element={<Addtranport />} />
