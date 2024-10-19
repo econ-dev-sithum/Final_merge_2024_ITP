@@ -49,6 +49,7 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/employee" element={<EmployeeManagementPage />} />
 
         {/* room reservation */}
         <Route

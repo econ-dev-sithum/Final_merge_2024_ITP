@@ -3,50 +3,50 @@ const mongoose = require("mongoose");
 const employeeSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: true,
+    required: true
   },
   lastName: {
     type: String,
-    required: true,
+    required: true
   },
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   phone: {
-    type: String,
+    type: String
   },
   address: {
     type: String,
-    required: true,
+    required: true
   },
   city: {
     type: String,
-    required: true,
+    required: true
   },
   state: {
     type: String,
-    required: true,
+    required: true
   },
   country: {
     type: String,
-    required: true,
+    required: true
   },
 
   zipCode: {
     type: String,
-    required: true,
+    required: true
   },
   DateOfBirth: {
     type: Date,
-    required: true,
+    required: true
   },
   role: {
     type: String,
     enum: ["manager", "receptionist", "cleaning_staff"],
-    required: true,
-  },
+    required: true
+  }
 });
 
 const Employee = mongoose.model("Employee", employeeSchema);
