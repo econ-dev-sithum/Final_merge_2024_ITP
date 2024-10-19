@@ -96,8 +96,8 @@ exports.createSession = async (req, res) => {
         customer: customer.id,
         line_items,
         mode: 'payment',
-        success_url: `http://localhost:5173/order-pay-success`,
-        cancel_url: `http://localhost:5173/cart`,
+        success_url: `http://localhost:5000/order-pay-success`,
+        cancel_url: `http://localhost:5000/cart`,
     });
 
     res.send({ url: session.url });

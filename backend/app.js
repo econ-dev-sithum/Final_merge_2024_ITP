@@ -15,7 +15,7 @@ const IauthRoute = require("./Route/Inventary/auth.route.js");  // Changed to re
 const IproductRoute = require("./Route/Inventary/products.route.js");
 const IuserRoute = require("./Route/Inventary/user.route.js")
 const IorderRoute = require("./Route/Inventary/order.route.js")
-const stripe = require("./Route/Inventary/stripe.route.js")
+const Istripe = require("./Route/Inventary/stripe.route.js")
 
 
 
@@ -38,6 +38,13 @@ app.use("/api/food", foodRouter);
 app.use("/images", express.static('uploads'));
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
+
+app.use("/api/auth",IauthRoute);
+app.use("/api/user",IuserRoute); 
+app.use("/api/products",IproductRoute);
+app.use("/api/order",IorderRoute);
+app.use("/api/stripe",Istripe);
+
 
 // Database connection
 mongoose.connect(config.get('db.uri'))
