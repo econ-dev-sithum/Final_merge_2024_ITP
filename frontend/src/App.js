@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./Context/Ucontex.js";
 import TransportHome from "./component/Transport/transportHome";
@@ -31,12 +31,10 @@ import AddProducts from "./inventry/Pages/AddProducts";
 import PostProduct from "./inventry/Pages/PostProduct";
 import SignUp from "./inventry/Pages/SignUp";
 import SignIn from "./inventry/Pages/SignIn";
-// import PrivateRoute from "./Components/PrivateRoute";
 import PrivateRoute from "../src/inventry/Components/PrivateRoute.jsx";
 import DashBoard from "./inventry//Pages/DashBoard";
 import OnlyAdminPrivateRoute from "../src/inventry/Components/OnlyAdminPrivateRoute";
 import UpdateProducts from "./inventry//Pages/UpdateProduct";
-// import ProductPage from './inventry/Pages/ProductPage';
 import Cart from "./inventry/Pages/Cart";
 import Ordersummary from "./inventry/Pages/Ordersummary";
 import UpdateOrder from "./inventry/Pages/UpdateOrder";
@@ -45,116 +43,143 @@ import CheckoutSuccess from "./inventry/Pages/CheckoutSuccess";
 import ForgetPassword from "./inventry/Pages/ForgetPassword";
 import ResetPassword from "./inventry/Pages/ResetPassword";
 import "./App.css";
+// ##############################################  food #######################
+import Cartfood from "../src/food/pages/Cart/Cart.jsx";
+import LoginPopup from "../src/food/components/LoginPopup/LoginPopup";
+import PlaceOrder from "../src/food/pages/PlaceOrder/PlaceOrder";
+import MyOrders from "../src/food/pages/MyOrders/MyOrders";
+import "react-toastify/dist/ReactToastify.css";
+import Verify from "../src/food/pages/Verify/Verify";
+import Homefood from "../src/food/pages/Home/Home";
+import Navbarfood from "../src/food/components/Navbar/Navbar";
+// ##############################################  food #######################
 
 function App() {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
+
+    <>
+      <ToastContainer />
+      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+      <div className="app">
+        <Navbarfood setShowLogin={setShowLogin} />
+        <Routes>
+          {/* ############################################## foood ######################## */}
+
+          <Route path="/homefood" element={<Homefood />} />
+          <Route path="/cart" element={<Cartfood />} />
+          <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/myorders" element={<MyOrders />} />
+          <Route path="/verify" element={<Verify />} />
+
+          {/* ############################################## foood ######################## */}
+        </Routes>
+      </div>
+      {/* inventory header */}
       <Header />
+      {/* inventory header */}
       <UserProvider>
-        <div>
-          <Routes>
-            <Route path="/transportHome" element={<TransportHome />} />
-            <Route path="/addtranport" element={<Addtranport />} />
-            <Route path="/addcomplaints" element={<ComplaintForm />} />
-            <Route path="/allcomplaints" element={<ComplaintsView />} />
-            <Route path="/reply-complaint/:id" element={<ReplyComplaint />} />
-            <Route
-              path="/feedBackDetail/create"
-              element={<CreateADFeedBack />}
-            />
-            <Route path="/FeedBackDetails" element={<FeedBackDetails />} />
-            <Route
-              path="/feedBackDetail/details/:id"
-              element={<ViewADFeedBack />}
-            />
-            <Route
-              path="/feedBackDetail/edit/:id"
-              element={<UpdateADFeedBack />}
-            />
-            <Route
-              path="/feedBackDetail/delete/:id"
-              element={<DeleteADFeedBack />}
-            />
-            <Route path="/AftRegDetails" element={<AfterFeedBack />} />
-            <Route path="/explore-menu" element={<ExploreMenu />} />
-            {/* ############################################## */}
-            <Route path="/" element={<Homein />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/product-page" element={<ProductPage />} />
+        <Routes>
+          <Route path="/transportHome" element={<TransportHome />} />
+          <Route path="/addtranport" element={<Addtranport />} />
+          <Route path="/addcomplaints" element={<ComplaintForm />} />
+          <Route path="/allcomplaints" element={<ComplaintsView />} />
+          <Route path="/reply-complaint/:id" element={<ReplyComplaint />} />
+          <Route path="/feedBackDetail/create" element={<CreateADFeedBack />} />
+          <Route path="/FeedBackDetails" element={<FeedBackDetails />} />
+          <Route
+            path="/feedBackDetail/details/:id"
+            element={<ViewADFeedBack />}
+          />
+          <Route
+            path="/feedBackDetail/edit/:id"
+            element={<UpdateADFeedBack />}
+          />
+          <Route
+            path="/feedBackDetail/delete/:id"
+            element={<DeleteADFeedBack />}
+          />
+          <Route path="/AftRegDetails" element={<AfterFeedBack />} />
+          <Route path="/explore-menu" element={<ExploreMenu />} />
+          {/* ############################################## */}
+          <Route path="/" element={<Homein />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/product-page" element={<ProductPage />} />
 
-            <Route path="/product/:productSlug" element={<PostProduct />} />
-            <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/product/:productSlug" element={<PostProduct />} />
+          <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
+
+          <Route element={<PrivateRoute />} />
+          <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/order-summary" element={<Ordersummary />} />
+          <Route path="/order-pay-success" element={<CheckoutSuccess />} />
+          <Route />
+
+          <Route element={<OnlyAdminPrivateRoute />}>
+            <Route path="/addproduct" element={<AddProducts />} />
             <Route
-              path="/resetpassword/:id/:token"
-              element={<ResetPassword />}
+              path="/update-product/:productId"
+              element={<UpdateProducts />}
             />
+            <Route path="/update-order/:orderId" element={<UpdateOrder />} />
+          </Route>
 
-            <Route element={<PrivateRoute />} />
-            <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/order-summary" element={<Ordersummary />} />
-            <Route path="/order-pay-success" element={<CheckoutSuccess />} />
-            <Route />
-
-            <Route element={<OnlyAdminPrivateRoute />}>
-              <Route path="/addproduct" element={<AddProducts />} />
-              <Route
-                path="/update-product/:productId"
-                element={<UpdateProducts />}
-              />
-              <Route path="/update-order/:orderId" element={<UpdateOrder />} />
-            </Route>
-            {/* Routes with Sidebar and Navbar */}
-            <Route
-              path="/add"
-              element={
-                <>
-                  <Navbar />
-                  <div style={{ display: "flex" }}>
-                    <Sidebar />
-                    <div style={{ flexGrow: 1 }}>
-                      <Addadmin />
-                    </div>
+          {/* Routes with Sidebar and Navbar */}
+          <Route
+            path="/add"
+            element={
+              <>
+                <Navbar />
+                <div style={{ display: "flex" }}>
+                  <Sidebar />
+                  <div style={{ flexGrow: 1 }}>
+                    <Addadmin />
                   </div>
-                </>
-              }
-            />
-            <Route
-              path="/list"
-              element={
-                <>
-                  <Navbar />
-                  <div style={{ display: "flex" }}>
-                    <Sidebar />
-                    <div style={{ flexGrow: 1 }}>
-                      <AdminList />
-                    </div>
+                </div>
+              </>
+            }
+          />
+          <Route
+            path="/list"
+            element={
+              <>
+                <Navbar />
+                <div style={{ display: "flex" }}>
+                  <Sidebar />
+                  <div style={{ flexGrow: 1 }}>
+                    <AdminList />
                   </div>
-                </>
-              }
-            />
-            <Route
-              path="/orders"
-              element={
-                <>
-                  <Navbar />
-                  <div style={{ display: "flex" }}>
-                    <Sidebar />
-                    <div style={{ flexGrow: 1 }}>
-                      <AllOrders />
-                    </div>
+                </div>
+              </>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <>
+                <Navbar />
+                <div style={{ display: "flex" }}>
+                  <Sidebar />
+                  <div style={{ flexGrow: 1 }}>
+                    <AllOrders />
                   </div>
-                </>
-              }
-            />
-          </Routes>
+                </div>
+              </>
+            }
+          />
+        </Routes>
 
-          <ToastContainer />
-        </div>
+        <ToastContainer />
       </UserProvider>
+      {/* inventory header */}
       <Footer />
-    </BrowserRouter>
+      {/* inventory header */}
+    </>
   );
 }
 
