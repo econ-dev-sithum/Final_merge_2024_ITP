@@ -68,7 +68,7 @@ export default function SignIn() {
         <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-20 ">
             {/* left */}
             <div className="flex-1">
-                <Link to ="/" className="text-5xl font-bold dark:text-white font-tangerine">
+                <Link to ="/" className="text-5xl font-bold text-black font-tangerine">
                     <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via purple-500 to-pink-500  text-white rounded-lg  size-10/12" >Valampuri</span>Inventory
                 </Link>
                 <p className="text-sm mt-5 font-cinzel font-gray font-semibold">Manage the Hotel Room Inventory</p>
