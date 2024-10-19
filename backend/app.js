@@ -1,7 +1,7 @@
 const express = require("express");
 require('dotenv').config({ path: './env/.env' }); // Ensure correct path to .env file
 const mongoose = require("mongoose");
-const config = require('config');
+const config = require("config");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -20,6 +20,11 @@ const Istripe = require("./Route/Inventary/stripe.route.js")
 
 
 
+const roomReservationrouter = require("./Route/RoomReservationRoute/UserRoute.js");
+const employeeRoutes = require("./Route/employeeRoute/employee.routes.js");
+const userRoutes = require("./Route/employeeRoute/users.routes.js");
+const leaveRequestRoutes = require("./Route/employeeRoute/leave-request.routes.js");
+const attendanceRoutes = require("./Route/employeeRoute/attendance.routes.js");
 
 const app = express();
 
@@ -45,11 +50,18 @@ app.use("/api/products",IproductRoute);
 app.use("/api/order",IorderRoute);
 app.use("/api/stripe",Istripe);
 
+app.use("/users", roomReservationrouter);
+app.use("/api/employees", employeeRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/leave-request", leaveRequestRoutes);
+app.use("/api/attendance", attendanceRoutes);
 
-// Database connection
-mongoose.connect(config.get('db.uri'))
-    .then(() => console.log('Connected to MongoDB...'))
-    .catch(err => console.error('Could not connect to MongoDB...', err));
+
+//Database connection
+mongoose
+  .connect(config.get("db.uri"))
+  .then(() => console.log("Connected to MongoDB..."))
+  .catch((err) => console.error("Could not connect to MongoDB...", err));
 
 // Starting the server
 const port = process.env.PORT || 3000;

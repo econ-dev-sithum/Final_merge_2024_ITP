@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./Context/Ucontex.js";
+
 import TransportHome from "./component/Transport/transportHome";
 import Addtranport from "./component/Transport/addtranport";
 import ComplaintForm from "./complainnts/ComplaintsCreate";
@@ -19,7 +20,7 @@ import Sidebar from "./component/Sidebar/Sidebar.jsx";
 import Addadmin from "./pages/Add/Add";
 import AdminList from "./pages/List/List";
 import AllOrders from "./pages/Orders/Orders";
-import Home from "./pages/foodcart/Home/Home.jsx";
+import HomeCard from "./pages/foodcart/Home/Home.jsx";
 import ExploreMenu from "./Context/ExploreMenu";
 import ProductPage from "./inventry/Pages/ProductPage.jsx";
 
@@ -53,6 +54,29 @@ import Verify from "../src/food/pages/Verify/Verify";
 import Homefood from "../src/food/pages/Home/Home";
 import Navbarfood from "../src/food/components/Navbar/Navbar";
 // ##############################################  food #######################
+import Home from "./roomReservation/Components/Home/Home";
+import Nav from "./roomReservation/Components/Nav/Nav";
+import Accomodation from "./roomReservation/Components/Accomodation/Accomodation";
+import CheckOut from "./roomReservation/Components/CheckOut/CheckOut";
+import SidebarRoom from "./roomReservation/Components/Sidebar/Sidebar";
+import Login from "./Auth/login";
+import Register from "./Auth/Register";
+import ForgotPassword from "./Auth/ForgotPassword";
+import ResetPasswordInventory from "./Auth/reset-password";
+import Dashboard from "./DashBoard/Dashboard";
+import AttendanceManagementPage from "./Employee/Attendance";
+
+//juthmini
+import "./App.css";
+import EmployeeManagementPage from "./Employee/Employee";
+import LeaveTrackingPage from "./Employee/LeaveTracking";
+
+const storedAuthToken = localStorage.getItem("authToken");
+const storedUserType = localStorage.getItem("loggedInUserType");
+
+const isAdminAuthenticated = () => {
+  return storedAuthToken && storedUserType === "admin";
+};
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -81,6 +105,10 @@ function App() {
       <Header />
       {/* inventory header */}
       <UserProvider>
+        {/* <Sidebar/>
+      <Nav /> */}
+
+        {/* /add footer room reservation  */}
         <Routes>
           <Route path="/transportHome" element={<TransportHome />} />
           <Route path="/addtranport" element={<Addtranport />} />
@@ -172,6 +200,19 @@ function App() {
               </>
             }
           />
+          <Route path="/room-reservation" element={<Home />} />
+          <Route path="/mainhome" element={<HomeCard />} />
+          <Route path="/Accomodation" element={<Accomodation />} />
+          <Route path="/checkout" element={<CheckOut />} />
+
+          <Route path="/employee" element={<EmployeeManagementPage />} />
+          <Route path="/leaveTracking" element={<LeaveTrackingPage />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/attendance" element={<AttendanceManagementPage />} />
         </Routes>
 
         <ToastContainer />
