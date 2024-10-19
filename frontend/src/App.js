@@ -65,6 +65,7 @@ import ForgotPassword from "./Auth/ForgotPassword";
 import ResetPasswordInventory from "./Auth/reset-password";
 import Dashboard from "./DashBoard/Dashboard";
 import AttendanceManagementPage from "./Employee/Attendance";
+import Main from "../src/pages/Main.jsx";
 
 //juthmini
 import "./App.css";
@@ -110,6 +111,7 @@ function App() {
 
         {/* /add footer room reservation  */}
         <Routes>
+          <Route path="/" element={<Main />} />
           <Route path="/transportHome" element={<TransportHome />} />
           <Route path="/addtranport" element={<Addtranport />} />
           <Route path="/addcomplaints" element={<ComplaintForm />} />
@@ -132,7 +134,7 @@ function App() {
           <Route path="/AftRegDetails" element={<AfterFeedBack />} />
           <Route path="/explore-menu" element={<ExploreMenu />} />
           {/* ############################################## */}
-          <Route path="/" element={<Homein />} />
+          <Route path="/in" element={<Homein />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/product-page" element={<ProductPage />} />
@@ -141,21 +143,44 @@ function App() {
           <Route path="/forgetPassword" element={<ForgetPassword />} />
           <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
 
-          <Route element={<PrivateRoute />} />
+          {/* <Route element={<PrivateRoute />} /> */}
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order-summary" element={<Ordersummary />} />
           <Route path="/order-pay-success" element={<CheckoutSuccess />} />
-          <Route />
+          {/* <Route /> */}
 
-          <Route element={<OnlyAdminPrivateRoute />}>
+          {/* <Route element={<OnlyAdminPrivateRoute />}> */}
             <Route path="/addproduct" element={<AddProducts />} />
-            <Route
-              path="/update-product/:productId"
-              element={<UpdateProducts />}
-            />
-            <Route path="/update-order/:orderId" element={<UpdateOrder />} />
-          </Route>
+          {/* </Route> */}
+          <Route path="/transportHome" element={<TransportHome />} />
+          <Route path="/addtranport" element={<Addtranport />} />
+          <Route path="/addcomplaints" element={<ComplaintForm />} />
+          <Route path="/allcomplaints" element={<ComplaintsView />} />
+          <Route path="/reply-complaint/:id" element={<ReplyComplaint />} />
+          <Route path="/feedBackDetail/create" element={<CreateADFeedBack />} />
+          <Route path="/FeedBackDetails" element={<FeedBackDetails />} />
+          <Route
+            path="/feedBackDetail/details/:id"
+            element={<ViewADFeedBack />}
+          />
+          <Route
+            path="/feedBackDetail/edit/:id"
+            element={<UpdateADFeedBack />}
+          />
+          <Route
+            path="/feedBackDetail/delete/:id"
+            element={<DeleteADFeedBack />}
+          />
+          <Route path="/AftRegDetails" element={<AfterFeedBack />} />
+          <Route path="/explore-menu" element={<ExploreMenu />} />
+
+          {/* Routes with Sidebar and Navbar */}
+          <Route
+            path="/update-product/:productId"
+            element={<UpdateProducts />}
+          />
+          <Route path="/update-order/:orderId" element={<UpdateOrder />} />
 
           {/* Routes with Sidebar and Navbar */}
           <Route
@@ -207,7 +232,7 @@ function App() {
 
           <Route path="/employee" element={<EmployeeManagementPage />} />
           <Route path="/leaveTracking" element={<LeaveTrackingPage />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/inventory" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
