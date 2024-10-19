@@ -64,7 +64,7 @@ export default function PostProduct() {
     setNotification({ visible: true, message });
     setTimeout(() => {
       setNotification({ visible: false, message: '' });
-    }, 3000);
+    }, 5000);
   };
 
   if (loading) {
