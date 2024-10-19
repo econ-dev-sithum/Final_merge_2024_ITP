@@ -112,7 +112,7 @@ export default function TransportList() {
 
   return (
     <div>
-      <div className="flex justify-between items-center h-64 p-4 bg-white rounded-[11px] mb-[15px] px-[15px]">
+      <div className="flex justify-between items-center h-24 p-4 bg-white rounded-[11px] mb-[15px] px-[15px]">
         <h1 className="text-2xl font-semibold font-Poppins px-4">All Transports</h1>
         <Input
           placeholder="Search by Customer Name"

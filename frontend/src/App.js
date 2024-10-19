@@ -19,7 +19,7 @@ import Sidebar from './component/Sidebar/Sidebar.jsx';
 import Addadmin from './pages/Add/Add';
 import AdminList from './pages/List/List';
 import AllOrders from './pages/Orders/Orders';
-import Home from './pages/foodcart/Home/Home.jsx';
+import Main from './pages/Main.jsx';
 import ExploreMenu from './Context/ExploreMenu';
 import "./App.css";
 
@@ -29,6 +29,7 @@ function App() {
       <UserProvider>
         <div>
           <Routes>
+          <Route path="/" element={<Main/>} />
             <Route path="/transportHome" element={<TransportHome />} />
             <Route path="/addtranport" element={<Addtranport />} />
             <Route path='/addcomplaints' element={<ComplaintForm/>} />
