@@ -11,6 +11,15 @@ const userRouter = require("./Route/food/userRoute.js");
 const foodRouter = require("./Route/food/foodRoute.js");
 const cartRouter = require("./Route/food/cartRoute.js");
 const orderRouter = require("./Route/food/orderRoute.js");
+const IauthRoute = require("./Route/Inventary/auth.route.js");  // Changed to require
+const IproductRoute = require("./Route/Inventary/products.route.js");
+const IuserRoute = require("./Route/Inventary/user.route.js")
+const IorderRoute = require("./Route/Inventary/order.route.js")
+const stripe = require("./Route/Inventary/stripe.route.js")
+
+
+
+
 
 const app = express();
 
@@ -24,12 +33,11 @@ app.use(cookieParser());
 app.use(require("./Route/TransportRoutes.js"));
 app.use("/complaints", complainRoutes);
 app.use('/feedBackDetail', Feedback);
-
-app.use("/api/user", userRouter)
-app.use("/api/food", foodRouter)
-app.use("/images",express.static('uploads'))
-app.use("/api/cart", cartRouter)
-app.use("/api/order",orderRouter)
+app.use("/api/user", userRouter);
+app.use("/api/food", foodRouter);
+app.use("/images", express.static('uploads'));
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 
 // Database connection
 mongoose.connect(config.get('db.uri'))
