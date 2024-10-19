@@ -25,15 +25,15 @@ import ExploreMenu from "./Context/ExploreMenu";
 import ProductPage from "./inventry/Pages/ProductPage.jsx";
 
 // ##############################################
-import Header from "../src/inventry/Components/Header";
+import HeaderInventory from "../src/inventry/Components/Header";
 import Homein from "./inventry/Pages/Home";
-import Footer from "../src/inventry/Components/Footer";
+import FooterInventory from "../src/inventry/Components/Footer";
 import AddProducts from "./inventry/Pages/AddProducts";
 import PostProduct from "./inventry/Pages/PostProduct";
 import SignUp from "./inventry/Pages/SignUp";
 import SignIn from "./inventry/Pages/SignIn";
 import PrivateRoute from "../src/inventry/Components/PrivateRoute.jsx";
-import DashBoard from "./inventry//Pages/DashBoard";
+import DashBoardInventory from "./inventry//Pages/DashBoard";
 import OnlyAdminPrivateRoute from "../src/inventry/Components/OnlyAdminPrivateRoute";
 import UpdateProducts from "./inventry//Pages/UpdateProduct";
 import Cart from "./inventry/Pages/Cart";
@@ -53,12 +53,14 @@ import "react-toastify/dist/ReactToastify.css";
 import Verify from "../src/food/pages/Verify/Verify";
 import Homefood from "../src/food/pages/Home/Home";
 import Navbarfood from "../src/food/components/Navbar/Navbar";
-// ##############################################  food #######################
-import Home from "./roomReservation/Components/Home/Home";
-import Nav from "./roomReservation/Components/Nav/Nav";
+// ##############################################  roome reservation #######################
+import HomeReservation from "./roomReservation/Components/Home/Home";
+import NavReservation from "./roomReservation/Components/Nav/Nav";
+import FooterReservation from "./roomReservation/Components/Footer/Footer.js";
 import Accomodation from "./roomReservation/Components/Accomodation/Accomodation";
 import CheckOut from "./roomReservation/Components/CheckOut/CheckOut";
 import SidebarRoom from "./roomReservation/Components/Sidebar/Sidebar";
+
 import Login from "./Auth/login";
 import Register from "./Auth/Register";
 import ForgotPassword from "./Auth/ForgotPassword";
@@ -89,22 +91,58 @@ function App() {
       <ToastContainer />
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
-        <Navbarfood setShowLogin={setShowLogin} />
         <Routes>
-          {/* ############################################## foood ######################## */}
+          {/* ############################################## foood done  ######################## */}
 
-          <Route path="/homefood" element={<Homefood />} />
-          <Route path="/cart" element={<Cartfood />} />
-          <Route path="/order" element={<PlaceOrder />} />
-          <Route path="/myorders" element={<MyOrders />} />
-          <Route path="/verify" element={<Verify />} />
+          <Route
+            path="/homefood"
+            element={
+              <>
+                <Navbarfood setShowLogin={setShowLogin} />
+                <Homefood />
+              </>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <>
+                <Navbarfood setShowLogin={setShowLogin} />
+                <Cartfood />
+              </>
+            }
+          />
+          <Route
+            path="/order"
+            element={
+              <>
+                <Navbarfood setShowLogin={setShowLogin} />
+                <PlaceOrder />
+              </>
+            }
+          />
+          <Route
+            path="/myorders"
+            element={
+              <>
+                <Navbarfood setShowLogin={setShowLogin} />
+                <MyOrders />
+              </>
+            }
+          />
+          <Route
+            path="/verify"
+            element={
+              <>
+                <Navbarfood setShowLogin={setShowLogin} />
+                <Verify />
+              </>
+            }
+          />
 
           {/* ############################################## foood ######################## */}
         </Routes>
       </div>
-      {/* inventory hetgtader */}
-      <Header />
-      {/* inventory header */}
       <UserProvider>
         {/* <Sidebar/>
       <Nav /> */}
@@ -112,11 +150,16 @@ function App() {
         {/* /add footer room reservation  */}
         <Routes>
           <Route path="/" element={<Main />} />
+
           <Route path="/transportHome" element={<TransportHome />} />
           <Route path="/addtranport" element={<Addtranport />} />
+          {/* ###################### Complement done  ####################################################################### */}
           <Route path="/addcomplaints" element={<ComplaintForm />} />
           <Route path="/allcomplaints" element={<ComplaintsView />} />
           <Route path="/reply-complaint/:id" element={<ReplyComplaint />} />
+          {/* ###################### Complement  ####################################################################### */}
+
+          {/* ###################### feedback done  ####################################################################### */}
           <Route path="/feedBackDetail/create" element={<CreateADFeedBack />} />
           <Route path="/FeedBackDetails" element={<FeedBackDetails />} />
           <Route
@@ -132,55 +175,168 @@ function App() {
             element={<DeleteADFeedBack />}
           />
           <Route path="/AftRegDetails" element={<AfterFeedBack />} />
-          <Route path="/explore-menu" element={<ExploreMenu />} />
-          {/* ############################################## */}
-          <Route path="/in" element={<Homein />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/product-page" element={<ProductPage />} />
+          {/* ################## feedback ####################################################################### */}
 
-          <Route path="/product/:productSlug" element={<PostProduct />} />
-          <Route path="/forgetPassword" element={<ForgetPassword />} />
-          <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
+          <Route path="/explore-menu" element={<ExploreMenu />} />
+
+          {/* ################## inventary done  ####################################################################### */}
 
           {/* <Route element={<PrivateRoute />} /> */}
-          <Route path="/dashboard" element={<DashBoard />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order-summary" element={<Ordersummary />} />
-          <Route path="/order-pay-success" element={<CheckoutSuccess />} />
+
           {/* <Route /> */}
 
           {/* <Route element={<OnlyAdminPrivateRoute />}> */}
-          <Route path="/addproduct" element={<AddProducts />} />
+
           {/* </Route> */}
-          <Route path="/transportHome" element={<TransportHome />} />
-          <Route path="/addtranport" element={<Addtranport />} />
-          <Route path="/addcomplaints" element={<ComplaintForm />} />
-          <Route path="/allcomplaints" element={<ComplaintsView />} />
+
+          {/* Routes with HeaderInventory and FooterInventory */}
+          <Route
+            path="/inventaryHome"
+            element={
+              <>
+                <HeaderInventory />
+                <Homein />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/sign-up"
+            element={
+              <>
+                <HeaderInventory />
+                <SignUp />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/sign-in"
+            element={
+              <>
+                <HeaderInventory />
+                <SignIn />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/product-page"
+            element={
+              <>
+                <HeaderInventory />
+                <ProductPage />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/product/:productSlug"
+            element={
+              <>
+                <HeaderInventory />
+                <PostProduct />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/forgetPassword"
+            element={
+              <>
+                <HeaderInventory />
+                <ForgetPassword />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/resetpassword/:id/:token"
+            element={
+              <>
+                <HeaderInventory />
+                <ResetPassword />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/dashboardinventory"
+            element={
+              <>
+                <HeaderInventory />
+                <DashBoardInventory />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <>
+                <HeaderInventory />
+                <Cart />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/order-summary"
+            element={
+              <>
+                <HeaderInventory />
+                <Ordersummary />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/order-pay-success"
+            element={
+              <>
+                <HeaderInventory />
+                <CheckoutSuccess />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/addproduct"
+            element={
+              <>
+                <HeaderInventory />
+                <AddProducts />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/update-product/:productId"
+            element={
+              <>
+                <HeaderInventory />
+                <UpdateProducts />
+                <FooterInventory />
+              </>
+            }
+          />
+          <Route
+            path="/update-order/:orderId"
+            element={
+              <>
+                <HeaderInventory />
+                <UpdateOrder />
+                <FooterInventory />
+              </>
+            }
+          />
+
+          {/* ################## inventary done  ####################################################################### */}
+
           <Route path="/reply-complaint/:id" element={<ReplyComplaint />} />
-          <Route path="/feedBackDetail/create" element={<CreateADFeedBack />} />
-          <Route path="/FeedBackDetails" element={<FeedBackDetails />} />
-          <Route
-            path="/feedBackDetail/details/:id"
-            element={<ViewADFeedBack />}
-          />
-          <Route
-            path="/feedBackDetail/edit/:id"
-            element={<UpdateADFeedBack />}
-          />
-          <Route
-            path="/feedBackDetail/delete/:id"
-            element={<DeleteADFeedBack />}
-          />
-          <Route path="/AftRegDetails" element={<AfterFeedBack />} />
           <Route path="/explore-menu" element={<ExploreMenu />} />
 
           {/* Routes with Sidebar and Navbar */}
-          <Route
-            path="/update-product/:productId"
-            element={<UpdateProducts />}
-          />
-          <Route path="/update-order/:orderId" element={<UpdateOrder />} />
 
           {/* Routes with Sidebar and Navbar */}
           <Route
@@ -225,13 +381,54 @@ function App() {
               </>
             }
           />
-          <Route path="/room-reservation" element={<Home />} />
-          <Route path="/mainhome" element={<HomeCard />} />
-          <Route path="/Accomodation" element={<Accomodation />} />
-          <Route path="/checkout" element={<CheckOut />} />
-
+          <Route
+            path="/room-reservation"
+            element={
+              <>
+                <SidebarRoom />
+                <NavReservation />
+                <HomeReservation />
+                <FooterReservation />
+              </>
+            }
+          />
+          <Route
+            path="/room-reservation"
+            element={
+              <>
+                <SidebarRoom />
+                <NavReservation />
+                <HomeReservation />
+                <FooterReservation />
+              </>
+            }
+          />
+          <Route
+            path="/Accomodation"
+            element={
+              <>
+                <SidebarRoom />
+                <NavReservation />
+                <Accomodation />
+                <FooterReservation />
+              </>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <>
+                <SidebarRoom />
+                <NavReservation />
+                <CheckOut />
+                <FooterReservation />
+              </>
+            }
+          />
+          {/* ################## iEmployeee done   ####################################################################### */}
           <Route path="/employee" element={<EmployeeManagementPage />} />
           <Route path="/leaveTracking" element={<LeaveTrackingPage />} />
+
           <Route path="/inventory" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
@@ -242,9 +439,6 @@ function App() {
 
         <ToastContainer />
       </UserProvider>
-      {/* inventory header */}
-      <Footer />
-      {/* inventory header */}
     </>
   );
 }
