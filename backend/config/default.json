@@ -1,5 +1,5 @@
 {
-    "db":{
-        "uri": "mongodb+srv://admin:admin123@cluster0.sornaiz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-    }
+  "db": {
+    "uri": "mongodb+srv://thevarasapavi2:vvAnTGwjlvwBBGtx@cluster0.nenqc.mongodb.net/"
+  }
 }

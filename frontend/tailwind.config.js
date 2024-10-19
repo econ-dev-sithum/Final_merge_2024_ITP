@@ -14,7 +14,7 @@ module.exports = {
         'secondary': '#c15026',
         'ternary': '#6e2e2c',
         'bgc': '#FCEADC',
-
+        
 
 
 
